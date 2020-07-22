@@ -165,17 +165,14 @@ namespace CheckPowerShell
             var appDir = GetAppDir();
             bool isNetwork = PathIsNetworkPath(appDir);
             var fullFileName = Path.Combine(appDir, fileName);
-            bool fileExists = File.Exists(fullFileName);
+            if (File.Exists(fullFileName) &! isNetwork) return fullFileName;
             var tmpFileName = Path.Combine(Path.GetTempPath(), fileName);
             if (File.Exists(tmpFileName)) return tmpFileName;//Already downloaded
             //Are we running from network location? Then copy file to temporary directory locally... If that file doesn't exist here yet
-            if (isNetwork)
+            if (File.Exists(fullFileName) && isNetwork)
             {
-                if (fileExists)
-                {
-                    File.Copy(fullFileName, tmpFileName);
-                    return tmpFileName;
-                }
+                File.Copy(fullFileName, tmpFileName);
+                return tmpFileName;
             }
 
             if (String.IsNullOrEmpty(url))
@@ -184,7 +181,7 @@ namespace CheckPowerShell
                 return "";
             }
             //If file doesn't exist - let's download it. Check that we have at least 200Mb free space on temp drive.
-            var sure = AskUser($"We couldn't find file {fileName} in {appDir}, but we can download it from {url}. Would you like to proceed with download and execution of that file? This might take some time.");
+            var sure = AskUser($"We couldn't find file {fileName} in {appDir}, but we can download it from {url}. Would you like to proceed with download and execution of that file? This might take some time.\n\nOtherwise you can copy required file to {fullFileName}");
             if (sure != DialogResult.Yes) return "";
             //Download the file
             ServicePointManager.Expect100Continue = true;                
