@@ -145,7 +145,7 @@ namespace CheckPowerShell
             var cmd = new Command
             {
                 Line = "msiexec.exe",
-                Arguments = $"/i {arg} /passive",
+                Arguments = $"-i {arg} -passive",
                 Shell = false,
                 Wait = false,
                 UI = ProcessWindowStyle.Normal
