@@ -22,6 +22,7 @@ namespace CheckPowerShell
         private bool net45Installed;
         private VersionInfo netVersion;
         private VersionInfo maxVerNet; //Maximum version of NETFX for this Windows
+        private const string psVersionCurrent = "7.2.6";
 
         //double verWindowsMin = 
         public frmMain()
@@ -100,7 +101,7 @@ namespace CheckPowerShell
             //Color code versions
             ColourLabelVersion("4.5", "4.7.2", netVersion, ref lblVerNET);
             //PS
-            ColourLabelVersion("5.1", "7.2.5", psVersion, ref lblVerPS);
+            ColourLabelVersion("5.1", psVersionCurrent, psVersion, ref lblVerPS);
             //Display update buttons?
             if (lblVerPS.ForeColor != Color.DarkGreen && net45Installed) cmdUpgradePS.Visible = true;
             if (lblVerNET.ForeColor != Color.DarkGreen) cmdUpgradeNET.Visible = true;
@@ -121,8 +122,8 @@ namespace CheckPowerShell
 
         private void cmdUpgradePS_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string psSetupFile = @"PowerShell-7.2.5-win-x64.msi";
-            string psLink = @"https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/PowerShell-7.2.5-win-x64.msi";
+            string psSetupFile = $@"PowerShell-{psVersionCurrent}-win-x64.msi";
+            string psLink = $@"https://github.com/PowerShell/PowerShell/releases/download/v{psVersionCurrent}/PowerShell-{psVersionCurrent}-win-x64.msi";
             //Detect local file
             try
             {
