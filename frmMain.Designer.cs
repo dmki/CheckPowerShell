@@ -36,6 +36,8 @@
             this.lblVerNET = new System.Windows.Forms.Label();
             this.lblVerPS = new System.Windows.Forms.Label();
             this.cmdWMF = new System.Windows.Forms.LinkLabel();
+            this.lblExPol = new System.Windows.Forms.Label();
+            this.lblExPolValue = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNet
@@ -63,10 +65,10 @@
             // lblExplanation
             // 
             this.lblExplanation.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblExplanation.Location = new System.Drawing.Point(14, 114);
+            this.lblExplanation.Location = new System.Drawing.Point(14, 131);
             this.lblExplanation.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblExplanation.Name = "lblExplanation";
-            this.lblExplanation.Size = new System.Drawing.Size(437, 99);
+            this.lblExplanation.Size = new System.Drawing.Size(437, 82);
             this.lblExplanation.TabIndex = 2;
             this.lblExplanation.Text = "Minimum compatible version of PowerShell is 5.1. Your version is 4.0. Upgrading w" +
     "ill install PowerShell 7.2";
@@ -119,18 +121,40 @@
             this.cmdWMF.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmdWMF.Location = new System.Drawing.Point(14, 197);
             this.cmdWMF.Name = "cmdWMF";
-            this.cmdWMF.Size = new System.Drawing.Size(291, 16);
+            this.cmdWMF.Size = new System.Drawing.Size(290, 16);
             this.cmdWMF.TabIndex = 8;
             this.cmdWMF.TabStop = true;
             this.cmdWMF.Text = "Install Windows Management Foundation 4";
             this.cmdWMF.Visible = false;
             this.cmdWMF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.cmdWMF_LinkClicked);
             // 
+            // lblExPol
+            // 
+            this.lblExPol.AutoSize = true;
+            this.lblExPol.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblExPol.Location = new System.Drawing.Point(14, 102);
+            this.lblExPol.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblExPol.Name = "lblExPol";
+            this.lblExPol.Size = new System.Drawing.Size(147, 18);
+            this.lblExPol.TabIndex = 9;
+            this.lblExPol.Text = "Execution policy:";
+            // 
+            // lblExPolValue
+            // 
+            this.lblExPolValue.AutoSize = true;
+            this.lblExPolValue.Location = new System.Drawing.Point(250, 102);
+            this.lblExPolValue.Name = "lblExPolValue";
+            this.lblExPolValue.Size = new System.Drawing.Size(58, 18);
+            this.lblExPolValue.TabIndex = 10;
+            this.lblExPolValue.Text = "label2";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 224);
+            this.Controls.Add(this.lblExPolValue);
+            this.Controls.Add(this.lblExPol);
             this.Controls.Add(this.cmdWMF);
             this.Controls.Add(this.lblVerPS);
             this.Controls.Add(this.lblVerNET);
@@ -164,6 +188,8 @@
         private System.Windows.Forms.Label lblVerNET;
         private System.Windows.Forms.Label lblVerPS;
         private System.Windows.Forms.LinkLabel cmdWMF;
+        private System.Windows.Forms.Label lblExPol;
+        private System.Windows.Forms.Label lblExPolValue;
     }
 }
 

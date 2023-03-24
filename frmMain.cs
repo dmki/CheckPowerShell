@@ -22,7 +22,7 @@ namespace CheckPowerShell
         private bool net45Installed;
         private VersionInfo netVersion;
         private VersionInfo maxVerNet; //Maximum version of NETFX for this Windows
-        private const string psVersionCurrent = "7.2.6";
+        private const string psVersionCurrent = "7.3.3";
 
         //double verWindowsMin = 
         public frmMain()
@@ -111,6 +111,8 @@ namespace CheckPowerShell
                 cmdWMF.Visible = true;
             }
             lblExplanation.Text = explanation;
+            //Execution policy
+            lblExPolValue.Text = GetPSPolicy();
         }
 
         private void ColourLabelVersion(string minVersion, string goodVersion, VersionInfo actualVersion, ref Label targetControl)
@@ -264,6 +266,23 @@ namespace CheckPowerShell
             cmd.Line = "https://www.microsoft.com/en-us/download/details.aspx?id=54616";
             cmd.Shell = true;
             cmd.Execute();
+        }
+
+        private string GetPSPolicy()
+        {
+            try
+            {
+                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell");
+                if (key == null) return "Unknown";//Probably not installed
+                string executionPolicy = key.GetValue("ExecutionPolicy").ToString();
+                //if (executionPolicy == "Restricted" || executionPolicy == "AllSigned") return true;
+                return executionPolicy;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            return "Unknown";
         }
     }
 }
