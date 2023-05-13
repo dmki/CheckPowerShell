@@ -22,7 +22,7 @@ namespace CheckPowerShell
         private bool net45Installed;
         private VersionInfo netVersion;
         private VersionInfo maxVerNet; //Maximum version of NETFX for this Windows
-        private const string psVersionCurrent = "7.3.3";
+        private const string psVersionCurrent = "7.3.4";
 
         //double verWindowsMin = 
         public frmMain()
